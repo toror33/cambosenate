@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Edu Manage for Senate</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="css/css-main.css" rel="stylesheet">
+  <style>
+    .homeSlider {
+      display: none;
+    }
+    .mb-4,
+    .my-4 {
+      margin-bottom: 0rem !important;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var myIndex = 0;
+      carousel();
+      function carousel() {
+        var x = document.getElementsByClassName("homeSlider");
+        for (var i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 3000); // Change image every 2 seconds
+      }
+    }
+  </script>
+</head>
+
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <% include ./sidebar %>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <div class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome to Senate</div>
+                <div class="mr-2 d-none d-lg-inline text-primary font-weight-bolder"><%= userName %></div>
+                <i class="mr-2 fas fa-user-circle" style="color: #716379;"></i>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/profile">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/auth/logout">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+
+            
+
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="w3-content w3-section" style="width:100%">
+              <img class="homeSlider" src="img/home1.png" style="width:100%">
+              <img class="homeSlider" src="img/home2.png" style="width:100%">
+              <img class="homeSlider" src="img/home3.png" style="width:100%">
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Content Row -->
+          <div class="row">
+            <!-- NEWS -->
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-3">
+
+              <!-- Approach -->
+              <div class="card shadow m b-4" style="margin-left:24px;">
+                <div class="card-header py-2.5">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <h6 class="m-0 font-weight-bold text-primary">News
+                      </h6>
+                    </div>
+                    <div class="col-auto">
+                      <a href="/news" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i
+                          class="fas fa-plus"></i> More</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body" style=" height:350px; overflow: scroll; overflow-x: hidden;">
+                  <!-- DataTales Example -->
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead style="font-size: 15px;">
+                      <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody style="font-size: 11px;">
+                      <% if(goods == null || goods.length == 0){ %>
+                      <tr class="noData">
+                        <td colspan="8" style="text-align: center; font-size: 16px;">There is no course to show.</td>
+                      </tr>
+                      <% } %>
+                      <% goods.forEach(function(goods,index){ %>
+                      <tr>
+                        <th scope="row"><%= goods.no %></th>
+                        <td> <a style="color: #000000" href="/news/view/<%= goods.no %>"><%= goods.title %></a></td>
+                        <td> <%= time[index] %></td>
+                      </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- !NEWS-->
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-3">
+
+              <!-- Approach -->
+              <div class="card shadow mb-4" style="margin-right:24px;">
+                <div class="card-header py-2.5">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <h6 class="m-0 font-weight-bold text-primary">Special Activites</h6>
+                    </div>
+                    <div class="col-auto">
+                      <a href="/specialActivity"
+                        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i
+                          class="fas fa-plus"></i> More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body" style=" height:350px; background-color:#f2f1f1;">
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    
+                   
+                    <% if(result2.length == 1){ %>
+                      <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <p style="text-align: center;">
+                            <img src="<%=result2[0].file%>" style="height: 310px;">
+                          </p>
+                        </div>
+                       </div>  
+                    <% } %>
+                    <% if(result2.length == 2){ %>
+                      <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <p style="text-align: center;">
+                            <img src="<%=result2[0].file%>" style="height: 310px;">
+                          </p>
+                        </div>
+                        <div class="carousel-item">
+                          <p style="text-align: center;">
+                            <img src="<%=result2[1].file%>" style="height: 310px;">
+                          </p>
+                        </div>
+                       </div>  
+                    <% } %>
+                    <% if(result2.length == 3){ %>
+                      <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <p style="text-align: center;">
+                            <img src="<%=result2[0].file%>" style="height: 310px;">
+                          </p>
+                        </div>
+                        <div class="carousel-item">
+                          <p style="text-align: center;">
+                            <img src="<%=result2[1].file%>" style="height: 310px;">
+                          </p>
+                        </div>
+                        <div class="carousel-item">
+                          <p style="text-align: center;">
+                            <img src="<%=result2[2].file%>" style="height: 310px;">
+                          </p>
+                        </div>
+                      </div>
+                    <% } %>
+                    
+                    <!-- Carousel controls -->
+                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                      <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                      <span class="carousel-control-next-icon"></span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Content Row -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright 2019. Senate of Cambodia</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/script-main.js"></script>
+</body>
+
+</html>

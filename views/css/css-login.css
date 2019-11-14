@@ -1,0 +1,238 @@
+
+.login-block{
+background: #DE6262;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #FFB88C, #817488);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #FFB88C, #907d99); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+float:left;
+width:100%;
+height:100%;
+padding : 50px 0;
+}
+
+body{
+    height:100%;
+    width:100%;    
+}
+
+.banner-sec{background:url(https://images.unsplash.com/photo-1526160330691-76a3d9690cfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+.carousel-inner{border-radius:0 10px 10px 0;}
+.carousel-caption{text-align:left; left:5%;}
+.login-sec{padding: 70px 30px; position:relative;}
+.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.login-sec .copy-text i{color:#FEB58A;}
+.login-sec .copy-text a{color:#E36262;}
+.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #4e4a49;}
+.login-sec h2:after{content:" "; width:100px; height:5px; background:#a69f9d; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.btn-login{background: #ffb88c; color:#fff; font-weight:600; width: 90px;}
+.btn-signin{background: #817488; color:#fff; font-weight:600; width: 90px;}
+.banner-text{width:70%; position: relative;  bottom:40px; padding-top: 300px; padding-left:30px;}
+.banner-text h2{color:#fff; font-weight:600;}
+.banner-text h2:after{content:" "; width:200px; height:4px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+.banner-text p{color:#fff;}
+
+
+
+    ::placeholder {
+      color: #747f8a !important;
+      font-size: 13px;
+      opacity: .5 !important;
+    }
+
+    .container-fluid {
+      padding: 0px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "mouse-500", Arial, Helvetica, sans-serif;
+    }
+    h6{
+      padding-left:7px;
+    }
+
+    strong {
+      font-family: "mouse-500", Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      font-family: "mouse-300", Arial, Helvetica, sans-serif;
+      color: #6A6A6A;
+    }
+
+    .btn-success {
+      background-color: #00ab9f;
+      border-color: #00ab9f;
+    }
+
+    .btn-success:hover {
+      background-color: #00ab9f !important;
+      border-color: #00ab9f !important;
+    }
+
+    .btn-success:active {
+      background-color: #00ab9f !important;
+      border-color: #00ab9f !important;
+    }
+
+    .btn-success:focus {
+      background-color: #00ab9f !important;
+      border-color: #00ab9f !important;
+      box-shadow: none !important;
+    }
+
+    .btn-info {
+      background-color: #4f6dcd;
+      border-color: #4f6dcd;
+    }
+
+    .btn-info:hover {
+      background-color: #4f6dcd !important;
+      border-color: #4f6dcd !important;
+    }
+
+    .btn-info:active {
+      background-color: #4f6dcd !important;
+      border-color: #4f6dcd !important;
+    }
+
+    .btn-info:focus {
+      background-color: #4f6dcd !important;
+      border-color: #4f6dcd !important;
+      box-shadow: none !important;
+    }
+
+    .form-control:focus {
+      box-shadow: none !important;
+      border: 2px solid #00a8df;
+    }
+
+    .btn-light {
+      background-color: #FFF;
+      color: #3F3F3F;
+    }
+
+    .collapse.show {
+      display: block !important;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border: 2px solid #0d7a40 !important;
+    }
+
+    .form-control {
+      background-color: #F8F8F8;
+      margin-bottom: 20px;
+    }
+
+    .form-control:focus {
+      background-color: #FFF;
+      border-color: #CCC;
+    }
+
+    @media screen and (max-width: 1199px) {
+      .container {
+        max-width: 100%;
+      }
+    }
+
+    /* ===================================== Header CSS ================================== */
+  
+    .btndiv {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .btndiv .btn {
+      width: 170px;
+      padding: 10px;
+      font-family: "mouse-500", Arial, Helvetica, sans-serif;
+    }
+
+    .tem-doc {
+      width: 600px;
+    }
+
+    .temp-model {
+      border-radius: 10px;
+      margin-top: 20%;
+    }
+
+    .temp-model .modal-header {
+      text-align: center;
+      display: flow-root;
+      border-bottom: 0px;
+    }
+
+    .temp-model .modal-header h5 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: -18px;
+      font-size: 30px;
+    }
+
+    .temp-model .modal-header .close {
+      position: absolute;
+      top: 9px;
+      right: 17px;
+    }
+
+    .temp-model .modal-header p {
+      font-size: 14px;
+      padding: 0px 10px;
+    }
+
+    .temp-model .form-ro {
+      margin: 0px;
+      margin-bottom: 5px;
+    }
+
+    .temp-model .form-ro input {
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+
+    .temp-model .btn {
+      width: 100%;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .temp-model .modal-footer {
+      display: flow-root;
+      background-color: #00ab9f;
+      text-align: center;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .temp-model .modal-footer p {
+      width: 100%;
+      text-align: center;
+      color: #FFF;
+      margin-bottom: 15px;
+    }
+
+    .temp-model .modal-footer .btn {
+      width: 40px;
+    }
+    .modal-bottom{
+height:550px;
+    }
+    .modal-body{
+      height:500px;
+      overflow:scroll;
+      overflow-x:hidden;
+    }
+    ::placeholder {
+      color: #747f8a !important;
+      font-size: 16px;
+      opacity: .5 !important;
+    }

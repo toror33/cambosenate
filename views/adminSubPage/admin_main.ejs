@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Edu Manage for Senate</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/css/css-main.css" rel="stylesheet">
+  <style>
+    body{
+      min-width: 1300px;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <% include ./admin_sidebar %>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <% include ./admin_topbar %>
+
+        <!-- Begin Page Content -->
+
+
+        <div class="container-fluid" style="padding-left:100px; padding-right:100px;">
+
+          <!-- Page Heading -->
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <div class="row justify-content-center">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="height:200px;">
+              <a href="/admin/basicCourse" style="color:#363636; text-decoration:none;">
+                <div class="card border-left-warning shadow h-100 py-2" style="width: 300px;">
+                  <div class="card-body" style="text-align: right;">
+                    <div class="icon_box" style="color: grey; margin-right: 5px;">
+                      <i class="fas fa-code fa-5x"></i>
+                    </div>
+                    <div class="txt_box"  style="margin-top: 15px;">
+                        <h3> Basic Course Management</h3>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="height:200px;">
+              <a href="/admin/advancedCourse" style="color:#363636; text-decoration:none;">
+                <div class="card border-left-warning shadow h-100 py-2" style="width: 300px;">
+                  <div class="card-body" style="text-align: right;">
+                    <div class="icon_box" style="color: grey;">
+                        <i class="fas fa-laptop-code fa-5x"></i>
+                    </div>
+                    <div class="txt_box"  style="margin-top: 15px;">
+                      <h3> Advanced Course Management</h3>
+                  </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4" style="height:200px;">
+              <a href="/admin/special_lecture" style="color:#363636; text-decoration:none;">
+                <div class="card border-left-warning shadow h-100 py-2" style="width: 300px;">
+                  <div class="card-body" style="text-align: right;">
+                    <div class="icon_box" style="color: grey; margin-right: 10px;">
+                      <i class="fas fa-code-branch fa-5x"></i>
+                    </div>
+                    <div class="txt_box"  style="margin-top: 15px;">
+                      <h3> Special Lectures Management</h3>
+                  </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Content Row -->
+          <div class="row justify-content-center">
+            <!-- Earnings (Monthly) Card Example -->
+            
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="height:200px;">
+                <a href="/admin/news" style="color:#363636; text-decoration:none;">
+                  <div class="card border-left-info shadow h-100 py-2" style="width: 300px;">
+                    <div class="card-body" style="text-align: right;">
+                      <div class="icon_box" style="color: grey;">
+                          <i class="far fa-newspaper fa-5x"></i>
+                      </div>
+                      <div class="txt_box">
+                          <h2 style="font-size: 2.3rem;"> News Management</h2>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-xl-3 col-md-6 mb-4" style="height:200px;">
+                <a href="/admin/usermanagement/user" style="color:#363636; text-decoration:none;">
+                  <div class="card border-left-info shadow h-100 py-2" style="width: 300px;">
+                    <div class="card-body" style="text-align: right;">
+                      <div class="icon_box" style="color: grey;">
+                          <i class="fas fa-users fa-5x"></i>
+                      </div>
+                      <div class="txt_box">
+                          <h1 style="font-size: 2.8rem; margin-top: 15px;"> All Users</h1>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="height:200px;">
+              <a href="/admin/registereduser" style="color:#363636; text-decoration:none;">
+                <div class="card border-left-info shadow h-100 py-2" style="width: 300px;">
+                  <div class="card-body" style="text-align: right;">
+                    <div class="icon_box" style="color: grey;">
+                        <i class="fas fa-chalkboard-teacher fa-5x"></i>
+                    </div>
+                    <div class="txt_box" style="margin-top: 15px;">
+                        <h3 style="font-size: 1.4rem;"> Students Administration<br>for Each Course</h3>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+          
+          <!-- Content Row -->
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/js/script-main.js"></script>
+</body>
+
+</html>

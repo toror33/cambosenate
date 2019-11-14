@@ -1,0 +1,205 @@
+<html>
+
+<head>
+  <title>Senate login</title>
+
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/bootstrap/js/moment.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.datetimepicker.js"></script>
+  <link href="/vendor/bootstrap/css/bootstrap.datetimepicker.css" rel="stylesheet">
+  <script src="/vendor/bootstrap/js/bootstrap-select-country.js"></script>
+  <link href="/vendor/bootstrap/css/bootstrap-select-country.css" rel="stylesheet">
+
+  <link href="/vendor/bootstrap/css/bootstrap-select.css" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap-select-boot.css" rel="stylesheet">
+  <script src="/vendor/bootstrap/js/bootstrap-select.min.js"></script>
+
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-select-boot.css">
+  <link href="/css/css-login.css" rel="stylesheet">
+
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    function signup() {
+      $("#signup").modal('show');
+    }
+    $(function () {
+      var smsg = $("#smsg").text();
+      if (smsg != "null") {
+        alert(smsg);
+      }
+
+      $('#datetimepicker3').datetimepicker({
+        format: 'DD/MM/YYYY'
+      });
+    });
+    function validate() {
+      var user_pw = document.join.user_pw;
+      var user_pw_ck = document.join.user_pw_ck;
+      if (user_pw.value != user_pw_ck.value) {
+        window.alert("Incorrect Password");
+        document.join.user_pw.focus();
+        return false;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="smsg" style="display: none"><%= signupMessage %></div>
+  <div class="login-block" style="padding-top:150px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 login-sec">
+          <h2 class="text-center">ICT Training Website</h2>
+          <form id="signin" class="login-form" action="/auth/login" method="POST">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="text-uppercase">ID</label>
+              <input type="text" name="user_email" class="form-control" placeholder="Input your ID" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+              <input type="password" name="user_pw" class="form-control" placeholder="Input your Password" required>
+            </div>
+            <div class="text-danger" style="padding-bottom: 5px;"><%= message%></div>
+
+            <div class="form-check float-right">
+              <button type="submit" class="btn btn-login ">Sign in</button>
+              <button type="button" onclick="signup()" class="btn btn-signin ">Sign up</button>
+            </div>
+          </form>
+          <div class="copy-text">Copyright 2019. Senate of Cambodia</div>
+        </div>
+        <div class="col-md-8 banner-sec">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+              <div class="carousel-item active">
+                <div class="banner-text">
+                  <h2>Welcome to Senate of Cambodian Kingdom</h2>
+                  <p>ICT Department of Senate of Cambodia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="signup" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog tem-doc" role="document">
+        <div class="modal-content temp-model">
+          <div class="modal-header" style="padding-bottom: 0">
+            <h5 class="modal-title">Senate Sign-up</h5>
+            <br>
+            <p>Welcome to Senate edu manage system</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-bottom">
+            <div class="modal-body">
+              <form id="sub" name="join" onsubmit="return validate()" method="post" action="/auth/signup">
+                <h6>Email [Ex. edu@gmail.com]</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Email" class="form-control" type="text" id="user_email"
+                    name="user_email" required>
+                </div>
+
+                <h6>Password</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Password" class="form-control" type="password" name="user_pw" required>
+                </div>
+
+                <h6>Retype Password!</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Password Again" class="form-control" type="password" name="user_pw_ck"
+                    required>
+                </div>
+
+                <h6>Given Name</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Given Name" class="form-control" type="text" name="user_gn" required>
+                </div>
+
+                <h6>Family Name</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Family Name" class="form-control" type="text" name="user_fn" required>
+                </div>
+
+                <h6>Gender</h6>
+
+                <div class="row form-ro">
+                  <div class="custom-control custom-radio" style="margin-left: 15px">
+                    <input type="radio" class="custom-control-input" id="defaultChecked" value="male" name="user_sex"
+                      checked>
+                    <label class="custom-control-label" for="defaultChecked">Male</label>
+                  </div>
+                  <div class="custom-control custom-radio" style="margin-left: 15px">
+                    <input type="radio" class="custom-control-input" id="defaultUnchecked" value="female"
+                      name="user_sex">
+                    <label class="custom-control-label" for="defaultUnchecked">Female</label>
+                  </div>
+                </div>
+                <div style="padding:2px;"></div>
+                <h6>Birth Date</h6>
+                <div class="form-group">
+                  <div class="row">
+                    <div class='col-sm-6'>
+                      <div class="form-group">
+                        <div class='input-group date' id='datetimepicker3'>
+                          <input type='text' class="form-control" name="user_birth" required />
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h6>Nationality</h6>
+                <div class="form-group">
+                  <div class="row form-ro">
+                    <select class="selectpicker countrypicker" data-default="Cambodia" data-live-search="true"
+                      data-default="United States" name="user_nation"></select>
+                  </div>
+                </div>
+
+                <h6>Phone Number [Ex. 012-345-678]</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Phone Number" class="form-control" type="text" name="user_phone"
+                    required>
+                </div>
+
+                <h6>Position</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Position" class="form-control" type="text" name="user_position"
+                    required>
+                </div>
+
+                <h6>Department</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Department" class="form-control" type="text" name="user_part" required>
+                </div>
+
+                <h6>Office ID</h6>
+                <div class="form-group">
+                  <input placeholder="Enter Your Office ID" class="form-control" type="text" name="user_offid" required>
+                </div>
+
+                <div id="pwsame"></div>
+                <div class="row form-ro">
+                  <button class="btn btn-success">Sign Up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

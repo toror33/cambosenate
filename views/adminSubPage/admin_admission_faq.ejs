@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>FAQ</title>
+  <!-- Custom fonts for this template-->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/css/css-main.css" rel="stylesheet">
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script>
+    var infinite = 1;
+    var infCheck = true;//update data check
+    var rtCheck = true;//just once function call
+    $(document).ready(function () {
+      $('#loading').hide();
+      var win = $(window);
+      // Each time the user scrolls
+      win.scroll(function () {
+        // End of the document reached?
+        if ($(document).height() - win.height() <= win.scrollTop() && infCheck == true && rtCheck == true) {
+          rtCheck = false;
+          $('#loading').show();
+          $.ajax({
+            url: '/admin/infiniteFAQ',
+            type: "POST",
+            data: { infinite: infinite },
+            success: function (data) {
+              if (data.result) {
+                if (data.infiniteQuestion[0]) {
+                  var question = data.infiniteQuestion[0];
+                  var comments = question.comments;
+                  var post = '<div class="row">';
+                  post += '<div class="col-lg-12">';
+                  post += '<div class="card shadow mb-4">';
+                  post += '<div class="card-header py-3">';
+                  post += '<div class=" d-flex flex-row justify-content-between">';
+                  post += '<div class="col-md-8" style="text-align:left; padding-left:0rem;">';
+                  post += '<h6 class="m-0 font-weight-bold text-primary " style="display:inline;">';
+                  post += question.course_title;
+                  post += '</h6>';
+                  post += '<div class="m-0 font-weight-bold text-primary "';
+                  post += 'style=" padding-left:10px; padding-right: 10px; display:inline;">|</div>';
+                  post += '<div class="m-0 font-weight-bold text-primary" style="display:inline">';
+                  post += question.question_title;
+                  post += '</div>';
+                  post += '</div>';
+                  post += '<div class="m-0 font-weight-bold text-primary">';
+                  post += question.user_email;
+                  post += '</div>';
+                  post += '<div class="col-md-1 dropdown no-arrow" style="text-align: right">';
+                  post += '<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                  post += '<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>';
+                  post += '</a>';
+                  post += '<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">';
+                  post += '<a class="dropdown-item" href="#" onclick="deleteQuestion(';
+                  post += question.no;
+                  post += ')">Delete</a>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '<div class="card-body">';
+                  post += '<div class="col-lg-12">';
+                  post += '<div class="row" style="min-height:80px; ">';
+                  post += '<div class="col-sm-10">';
+                  post += question.question;
+                  post += '</div>';
+                  post += '<div class="col-sm-2" style="text-align:right;">';
+                  post += '<div style="text-align:left;">';
+                  post += question.time;
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  for (var i = 0; i < comments.length; i++) {
+                    post += '<div class="dropdown-divider" style="border-color: #B5B5B5;"></div>';
+                    post += '<div class="row" style="min-height:70px;">';
+                    post += '<div class="col-sm-10" style="padding-left:40px;">';
+                    post += '<i class="fas fa-reply" style="margin-right:5px; -webkit-transform: scale(-1, -1);"></i>';
+                    post += comments[i].comment;
+                    post += '</div>';
+                    post += '<div class="col-sm-2">';
+                    post += '<div style="text-align:left; display:inline;font-size: 15px; padding-right:3px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">';
+                    post += comments[i].comment_time;
+                    post += '</div>';
+                    post += '<button type="submit" class="btn btn-primary " style="float:right; display:inline; margin-top:3px;" onclick="deleteComment(';
+                    post += comments[i].comment_no;
+                    post += ')"><i class="fas fa-trash-alt"></i></button>';
+                    post += '<div style="text-align:left; font-size: 15px; padding-right:3px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">';
+                    post += comments[i].comment_user_email;
+                    post += '</div>';
+                    post += '</div>';
+                    post += '</div>';
+                  }
+                  post += '<div class="row" style="margin-top:5px;">';
+                  post += '<div class="col-sm-10" style="padding-left:30px; padding-bottom: 0;">';
+                  post += '<div class="col-lg-12" style="padding-right:0px;">';
+                  post += '<div id="container2">';
+                  post += '<form action="/FAQ_comment" method="post">';
+                  post += '<input name="faq_no" value="';
+                  post += question.no;
+                  post += '" style="display:none">';
+                  post += '<div class="form-group">';
+                  post += '<textarea class="form-control" id="answer" placeholder="Answer" name="comment" rows="3" required style="width:100%; min-height:90px;"></textarea>';
+                  // post += '<div class="form-group col-sm-2" style="padding-left:0px;">';
+                  post += '<button type="submit" class="btn btn-primary" style="float:right; width:20%;margin-top:10px;">Answer</button>';
+                  //post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</form>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  post += '</div>';
+                  $('#posts').append(post);
+                  $('#loading').hide();
+                }
+              }
+              else {
+                infCheck = false;
+                $('#loading').text("Nothing to Update");
+              }
+            }
+          });
+          infinite++;
+          rtCheck = true;
+        }
+      });
+    });
+    function deleteQuestion(no) {
+      $.ajax({
+        url: "/admin/deleteFAQ",
+        type: "POST",
+        data: { no: no },
+        success: function (data) {
+          if (data.result) {
+            window.location.href = '/admin/FAQ';
+          }
+          else {
+            alert("Only the creator can delete it");
+          }
+
+        }
+      });
+    }
+    function deleteComment(comment_no) {
+      $.ajax({
+        url: "/admin/deleteFAQ_comment",
+        type: "POST",
+        data: { comment_no: comment_no },
+        success: function (data) {
+          if (data.result) {
+            window.location.href = '/admin/FAQ';
+          }
+          else {
+            alert("Only the creator can delete it");
+          }
+        }
+      });
+    }
+  </script>
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <% include ./admin_sidebar %>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <% include ./admin_topbar %>
+
+        <!-- Begin Page Content -->
+        <div id="posts" class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">FAQ</h1>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- Basic Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-body">
+                  <div id="container1">
+                    <form action="/admin/FAQ" method="post">
+                      <div class="form-group" style="width:23%; float:left; padding-right:10px;">
+                        <label for="course_title" style="padding-left:10px;">Course Title</label>
+                        <input type="text" class="form-control" id="writer" name="course_title"
+                          placeholder="Input your Course Title" required>
+                      </div>
+                      <div class="form-group" style="width:77%; float:left;">
+                        <label for="comment_title" style="padding-left:10px;">Question Title</label>
+                        <input type="text" class="form-control" id="subject" name="question_title"
+                          placeholder="Input Question Title" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="comment" style="padding-left:10px;">Question</label>
+                        <textarea class="form-control" id="comment" placeholder="Ask Question" name="question" rows="3"
+                          required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="float: right;">Write</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% question.forEach(function(question){ %>
+        <!-- Dropdown Card Example -->
+        <div class="row">
+
+          <div class="col-lg-12">
+
+
+
+
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3">
+                <div class=" d-flex flex-row justify-content-between">
+                  <div class="col-md-8" style="text-align:left; padding-left:0rem;">
+                    <h6 class="m-0 font-weight-bold text-primary " style="display:inline;">
+                      <%= question.course_title %>
+                    </h6>
+                    <div class="m-0 font-weight-bold text-primary "
+                      style=" padding-left:10px; padding-right: 10px; display:inline;">|</div>
+                    <div class="m-0 font-weight-bold text-primary" style="display:inline">
+                      <%= question.question_title %>
+                    </div>
+                  </div>
+                  <div class="m-0 font-weight-bold text-primary">
+                    <%= question.user_email %>
+                  </div>
+                  <div class="col-md-1 dropdown no-arrow" style="text-align: right">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                      aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#" onclick="deleteQuestion('<%= question.no %>')">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="col-lg-12">
+                  <div class="row" style="min-height:80px; ">
+                    <div class="col-sm-9">
+                      <%= question.question %>
+                    </div>
+                    <div class="col-sm-3" style="text-align:right; padding-left:100px;">
+                      <div style="text-align:left;"><%= question.time %></div>
+                    </div>
+                  </div>
+
+                  <% question.comments.forEach(function(comment){ %>
+                  <div class="dropdown-divider" style="border-color: #B5B5B5;"></div>
+                  <div class="row" style="min-height:70px;">
+                    <div class="col-sm-9" style="padding-left:70px; ">
+                      <i class="fas fa-reply" style="margin-right:5px; -webkit-transform: scale(-1, -1); "></i>
+                      <%= comment.comment %>
+                    </div>
+                    <div class="col-sm-3" style="padding-left:100px;">
+                      <div
+                        style="text-align:left; display:inline;font-size: 15px; padding-right:3px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                        <%= comment.comment_time %></div>
+                      <button type="submit" class="btn btn-primary "
+                        style="float:right; display:inline; margin-top:3px;"
+                        onclick="deleteComment('<%= comment.comment_no %>')"><i class="fas fa-trash-alt"></i></button>
+                      <div
+                        style="text-align:left; font-size: 15px; padding-right:3px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                        <%= comment.comment_user_email %></div>
+                    </div>
+                  </div>
+                  <% }) %>
+
+                  <div class="row" style="margin-top:5px;">
+                    <div class="col-sm-10" style="padding-left:30px; padding-bottom: 0;">
+                      <div class="col-lg-12" style="padding-right:0px;">
+                        <div id="container2">
+                          <form action="/admin/FAQ_comment" method="post">
+                            <input name="faq_no" value="<%= question.no %>" style="display:none" />
+                            <div class="form-group">
+                              <textarea class="form-control" id="answer" placeholder="Answer" name="comment" rows="3"
+                                required style="width:100%; min-height:90px;"></textarea>
+                              <!-- <div class="col-sm-2" style="padding-left:0px;"> -->
+                              <button type="submit" class="btn btn-primary "
+                                style="float:right; width:20%;margin-top:10px;">Answer</button>
+                              <!-- </div> -->
+                            </div>
+                        </div>
+                      </div>
+
+
+
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <p id="loading" style="padding-left:20px;">
+          Loading....
+        </p>
+      </div>
+      <!-- End of Main Content -->
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright 2019. Senate of Cambodia</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/js/script-main.js"></script>
+</body>
+
+</html>
